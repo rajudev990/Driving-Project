@@ -126,6 +126,12 @@ class DatabaseSeeder extends Seeder
             'view report',
             'delete report',
 
+            // expense permissions
+            'create expense',
+            'edit expense',
+            'view expense',
+            'delete expense',
+
 
 
             // setting permissions

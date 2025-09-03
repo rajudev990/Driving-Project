@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdmissionController;
 use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RoleController;
@@ -93,6 +94,9 @@ Route::prefix('admin')
 
         // Student
         Route::resource('students',StudentController::class);
+
+        // expense
+        Route::resource('expenses',ExpenseController::class);
 
         // Admission
         Route::resource('admissions',AdmissionController::class);
