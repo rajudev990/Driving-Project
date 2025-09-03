@@ -2,9 +2,17 @@
 
 
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdmissionController;
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
@@ -75,6 +83,34 @@ Route::prefix('admin')
         Route::resource('settings', SettingController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('users', UserController::class);
+
+
+        // Package
+        Route::resource('packages',PackageController::class);
+
+        // Teacher
+        Route::resource('teachers',TeacherController::class);
+
+        // Student
+        Route::resource('students',StudentController::class);
+
+        // Admission
+        Route::resource('admissions',AdmissionController::class);
+
+
+        // Schedule
+        Route::resource('schedule',ScheduleController::class);
+
+
+        // Attendance
+        Route::resource('attendance',AttendanceController::class);
+
+
+        // Course
+        Route::resource('course-complete',CourseController::class);
+
+        // Report
+        Route::resource('reports',ReportController::class);
 
 
 

@@ -73,6 +73,61 @@ class DatabaseSeeder extends Seeder
             'delete user',
 
 
+            // teacher permissions
+            'create teacher',
+            'edit teacher',
+            'view teacher',
+            'delete teacher',
+
+            // student permissions
+            'create student',
+            'edit student',
+            'view student',
+            'delete student',
+
+
+            // admission permissions
+            'create admission',
+            'edit admission',
+            'view admission',
+            'delete admission',
+
+
+            // schedule permissions
+            'create schedule',
+            'edit schedule',
+            'view schedule',
+            'delete schedule',
+
+
+            // package permissions
+            'create package',
+            'edit package',
+            'view package',
+            'delete package',
+
+
+            // attendance permissions
+            'create attendance',
+            'edit attendance',
+            'view attendance',
+            'delete attendance',
+
+
+            // course permissions
+            'create course',
+            'edit course',
+            'view course',
+            'delete course',
+
+            // report permissions
+            'create report',
+            'edit report',
+            'view report',
+            'delete report',
+
+
+
             // setting permissions
             'create setting',
             'edit setting',

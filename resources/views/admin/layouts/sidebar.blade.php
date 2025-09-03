@@ -22,21 +22,7 @@
                         </p>
                     </a>
                 </li>
-                @endcan
-
-
-
-                @canany(['create setting','edit setting','view setting','delete setting'])
-                <li class="nav-item">
-                    <a href="{{ route('admin.settings.index') }}" class="nav-link {{ Route::is('admin.settings.*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-cog"></i>
-                        <p>
-                            Settings
-                        </p>
-                    </a>
-                </li>
-                @endcan
-
+                @endcanany
 
 
                 <!-- Role Managment  -->
@@ -68,6 +54,17 @@
                         @endcanany
 
                     </ul>
+                </li>
+                @endcanany
+
+                @canany(['create setting','edit setting','view setting','delete setting'])
+                <li class="nav-item">
+                    <a href="{{ route('admin.settings.index') }}" class="nav-link {{ Route::is('admin.settings.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Settings
+                        </p>
+                    </a>
                 </li>
                 @endcanany
 
