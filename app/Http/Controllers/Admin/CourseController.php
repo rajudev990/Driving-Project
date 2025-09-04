@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admission;
+use App\Models\CourseComplete;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -22,7 +25,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $data = CourseComplete::latest()->get();
+        return view('admin.course-complete.index',compact('data'));
     }
 
     /**
@@ -30,7 +34,10 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        
+        $student = Student::where('status',1)->get();
+        $admission = Admission::where('status',1)->get();
+        return view('admin.course-complete.create',compact('admission','student'));
     }
 
     /**
@@ -38,7 +45,9 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        CourseComplete::create($data);
+        return redirect()->route('admin.course-complete.index')->with('success', 'Data Create successfully.');
     }
 
     /**
@@ -54,7 +63,10 @@ class CourseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = CourseComplete::findOrFail($id); 
+        $student = Student::where('status',1)->get();
+        $admission = Admission::where('status',1)->get();
+        return view('admin.course-complete.edit',compact('data','student','admission'));
     }
 
     /**
@@ -62,7 +74,12 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = CourseComplete::findOrFail($id); 
+
+        $input = $request->all();
+        $data->update($input);
+
+        return redirect()->route('admin.course-complete.index')->with('success', 'Data Update successfully.');
     }
 
     /**
@@ -70,6 +87,8 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         $data = CourseComplete::findOrFail($id); 
+         $data->delete();
+         return redirect()->back()->with('success', 'Data Delete successfully.');
     }
 }

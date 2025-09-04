@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Schedule;
+use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -22,7 +25,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $data = Schedule::latest()->get();
+        return view('admin.schedule.index',compact('data'));
     }
 
     /**
@@ -30,7 +34,9 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        $student = Student::where('status',1)->get();
+        $teacher = Teacher::where('status',1)->get();
+        return view('admin.schedule.create',compact('teacher','student'));
     }
 
     /**
@@ -38,7 +44,9 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Schedule::create($data);
+        return redirect()->route('admin.schedule.index')->with('success', 'Data Create successfully.');
     }
 
     /**
@@ -54,7 +62,10 @@ class ScheduleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Schedule::findOrFail($id); 
+        $student = Student::where('status',1)->get();
+        $teacher = Teacher::where('status',1)->get();
+        return view('admin.schedule.edit',compact('data','student','teacher'));
     }
 
     /**
@@ -62,7 +73,12 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Schedule::findOrFail($id); 
+
+        $input = $request->all();
+        $data->update($input);
+
+        return redirect()->route('admin.schedule.index')->with('success', 'Data Update successfully.');
     }
 
     /**
@@ -70,6 +86,8 @@ class ScheduleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         $data = Schedule::findOrFail($id); 
+         $data->delete();
+         return redirect()->back()->with('success', 'Data Delete successfully.');
     }
 }

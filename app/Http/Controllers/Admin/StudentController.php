@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -22,7 +25,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $data = Student::latest()->get();
+        return view('admin.student.index',compact('data'));
     }
 
     /**
@@ -30,7 +34,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.student.create');
     }
 
     /**
@@ -38,7 +42,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $data = $request->all();
+
+        $image = $request->hasFile('image') ? ImageHelper::uploadImage($request->file('image')) : '';
+        $data['image'] = $image;
+
+        Student::create($data);
+        return redirect()->route('admin.students.index')->with('success', 'Data Create successfully.');
     }
 
     /**
@@ -54,7 +68,8 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Student::findOrFail($id); 
+        return view('admin.student.edit',compact('data'));
     }
 
     /**
@@ -62,7 +77,28 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $data = Student::findOrFail($id); 
+
+        $image = $request->hasFile('image') ? ImageHelper::uploadImage($request->file('image')) : '';
+
+         if($request->hasFile('image') && $data->image) {
+            Storage::disk('public')->delete($data->image);
+         }
+
+        $input = $request->all();
+
+        if($image){
+            $input['image'] = $image;
+        }
+
+        $data->update($input);
+
+        return redirect()->route('admin.students.index')->with('success', 'Data Update successfully.');
     }
 
     /**
@@ -70,6 +106,13 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         $data = Student::findOrFail($id); 
+
+         if($data->image){
+             Storage::disk('public')->delete($data->image);
+         }
+
+         $data->delete();
+         return redirect()->back()->with('success', 'Data Delete successfully.');
     }
 }

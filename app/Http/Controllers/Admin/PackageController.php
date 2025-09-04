@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Package;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
@@ -21,7 +22,8 @@ class PackageController extends Controller
      */
     public function index()
     {
-        //
+        $data = Package::latest()->get();
+        return view('admin.package.index',compact('data'));
     }
 
     /**
@@ -29,7 +31,7 @@ class PackageController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.package.create');
     }
 
     /**
@@ -37,7 +39,16 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+         $request->validate([
+               'name' => 'required|string',
+               'total_class' => 'required'
+        ]);
+
+
+        $data = $request->all();
+        Package::create($data);
+        return redirect()->route('admin.packages.index')->with('success', 'Data Create successfully.');
     }
 
     /**
@@ -53,7 +64,8 @@ class PackageController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Package::findOrFail($id); 
+        return view('admin.package.edit',compact('data'));
     }
 
     /**
@@ -61,7 +73,18 @@ class PackageController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+         $request->validate([
+               'name' => 'required|string',
+               'total_class' => 'required'
+        ]);
+        
+        $data = Package::findOrFail($id); 
+
+        $input = $request->all();
+        $data->update($input);
+
+        return redirect()->route('admin.packages.index')->with('success', 'Data Update successfully.');
     }
 
     /**
@@ -69,6 +92,8 @@ class PackageController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         $data = Package::findOrFail($id); 
+         $data->delete();
+         return redirect()->back()->with('success', 'Data Delete successfully.');
     }
 }

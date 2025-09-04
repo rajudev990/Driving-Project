@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admission;
+use App\Models\Attendance;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
@@ -20,9 +23,12 @@ class AttendanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+     public function index()
     {
-        //
+        $data = Attendance::first();
+         $student = Student::where('status',1)->get();
+        $admission = Admission::where('status',1)->get(); 
+        return view('admin.attendance.index',compact('data','student','admission'));
     }
 
     /**
@@ -30,7 +36,7 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -38,7 +44,7 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -54,7 +60,7 @@ class AttendanceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -62,7 +68,12 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Attendance::findOrFail($id); 
+
+        $input = $request->all();
+        $data->update($input);
+
+        return redirect()->back()->with('success', 'Data Update successfully.');
     }
 
     /**
@@ -70,6 +81,6 @@ class AttendanceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
     }
 }
