@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Expense;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -22,7 +23,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //
+        $data = Expense::latest()->get();
+        return view('admin.expense.index',compact('data'));
     }
 
     /**
@@ -30,7 +32,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.expense.create');
     }
 
     /**
@@ -38,7 +40,10 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->all();
+        Expense::create($data);
+        return redirect()->route('admin.expense.index')->with('success', 'Data Create successfully.');
     }
 
     /**
@@ -54,7 +59,8 @@ class ExpenseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Expense::findOrFail($id); 
+        return view('admin.expense.edit',compact('data'));
     }
 
     /**
@@ -62,7 +68,14 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        
+        $data = Expense::findOrFail($id); 
+
+        $input = $request->all();
+        $data->update($input);
+
+        return redirect()->route('admin.expense.index')->with('success', 'Data Update successfully.');
     }
 
     /**
@@ -70,6 +83,8 @@ class ExpenseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         $data = Expense::findOrFail($id); 
+         $data->delete();
+         return redirect()->back()->with('success', 'Data Delete successfully.');
     }
 }

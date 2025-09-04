@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\WebsiteController;
+use App\Models\Expense;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
@@ -112,6 +113,9 @@ Route::prefix('admin')
 
         // Course
         Route::resource('course-complete',CourseController::class);
+
+        // Expense
+        Route::resource('expense',ExpenseController::class);
 
         // Report
         Route::resource('reports',ReportController::class);

@@ -120,6 +120,18 @@
                 </li>
                 @endcanany
 
+
+                @canany(['create expense','edit expense','view expense','delete expense'])
+                <li class="nav-item">
+                    <a href="{{ route('admin.expense.index') }}" class="nav-link {{ Route::is('admin.expense.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-chart-line"></i>
+                        <p>Expense</p>
+                    </a>
+                </li>
+                @endcanany
+
+
+
                 @canany(['create report','edit report','view report','delete report'])
                 <li class="nav-item">
                     <a href="{{ route('admin.reports.index') }}" class="nav-link {{ Route::is('admin.reports.*') ? 'active' : '' }}">
