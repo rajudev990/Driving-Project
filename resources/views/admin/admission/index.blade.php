@@ -34,7 +34,6 @@ Admission List
                                     <th>Sl</th>
                                     <th>Student Name</th>
                                     <th>Package Name</th>
-                                    <th>Admission</th>
                                     <th>Course Fee</th>
                                     <th>Paid</th>
                                     <th>Due</th>
@@ -49,7 +48,6 @@ Admission List
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->student?->name }}</td>
                                     <td>{{ $item->package?->name }}</td>
-                                    <td>{{ $item->admission_date }}</td>
                                     <td>{{ $item->course_fee }}</td>
                                     <td>{{ $item->paid }}</td>
                                     <td>{{ $item->due }}</td>

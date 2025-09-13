@@ -135,7 +135,7 @@
                 @canany(['create report','edit report','view report','delete report'])
                 <li class="nav-item">
                     <a href="{{ route('admin.reports.index') }}" class="nav-link {{ Route::is('admin.reports.*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-chart-line"></i>
+                       <i class="nav-icon fas fa-file-invoice-dollar"></i>
                         <p>Reports</p>
                     </a>
                 </li>
