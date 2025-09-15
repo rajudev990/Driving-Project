@@ -28,8 +28,8 @@ Update Teacher
                         @method('PUT')
 
                         <div class="card-body row">
-                            <div class="form-group col-lg-12">
-                                <label>Name <span class="text-secondary text-sm">(Optional)</span></label>
+                            <div class="form-group col-lg-6">
+                                <label>Name <span class="text-danger">*</span></label>
                                 <input type="text" name="name" id="name" value="{{$data->name}}" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Name" required>
                                 @error('name')
                                 <span class="text-danger">{{ $message }}</span>
@@ -37,7 +37,7 @@ Update Teacher
                             </div>
 
 
-                            <div class="form-group col-lg-12">
+                            <div class="form-group col-lg-6">
                                 <label>Email<span class="text-danger">*</span></label>
                                 <input type="text" value="{{$data->email}}" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="info@example.com">
 
@@ -46,9 +46,9 @@ Update Teacher
                                 @enderror
                             </div>
 
-                            <div class="form-group col-lg-12">
+                            <div class="form-group col-lg-6">
                                 <label>Phone <span class="text-danger">*</span></label>
-                                <input type="number" value="{{$data->phone}}" name="phone" id="phone" value=" " class="form-control @error('phone') is-invalid @enderror" placeholder="+8801XXXXXXXXX">
+                                <input type="number" value="{{$data->phone}}" name="phone" id="phone" value=" " class="form-control @error('phone') is-invalid @enderror" placeholder="01XXXXXXXXX">
                                 @error('phone')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror

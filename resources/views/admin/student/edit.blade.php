@@ -29,7 +29,7 @@ Update Student
 
                         <div class="card-body row">
                             <div class="form-group col-lg-6">
-                                <label>Name <span class="text-secondary text-sm">(Optional)</span></label>
+                                <label>Name <span class="text-danger">*</span></label>
                                 <input type="text" name="name" id="name" value="{{$data->name}}" class="form-control " placeholder="Enter Name" required>
                                 
                             </div>

@@ -77,11 +77,10 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-         $data = Student::findOrFail($id);
+        $data = Student::findOrFail($id);
         $request->validate([
-            'phone' => 'required|unique:students,phone' .$data->id,
+            'phone' => 'required|unique:students,phone,' . $data->id,
         ]);
-
        
 
         $image = $request->hasFile('image') ? ImageHelper::uploadImage($request->file('image')) : '';

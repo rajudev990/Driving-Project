@@ -29,20 +29,20 @@ Add Student
 
                         <div class="card-body  row">
                             <div class="form-group col-lg-6">
-                                <label>Name <span class="text-secondary text-sm">(Optional)</span></label>
-                                <input type="text" name="name" id="name" class="form-control " placeholder="Enter Name" required>
+                                <label>Name <span class="text-danger">*</span></label>
+                                <input value="{{ old('name') }}" type="text" name="name" id="name" class="form-control " placeholder="Enter Name" required>
 
                             </div>
 
 
                             <div class="form-group col-lg-6">
                                 <label>Email <span class="text-secondary text-sm">(Optional)</span></label>
-                                <input type="text" name="email" id="email" class="form-control" placeholder="info@example.com">
+                                <input value="{{ old('email') }}" type="text" name="email" id="email" class="form-control" placeholder="info@example.com">
                             </div>
 
                             <div class="form-group col-lg-6">
                                 <label>Phone <span class="text-danger">*</span></label>
-                                <input type="number" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="+8801XXXXXXXXX">
+                                <input value="{{ old('phone') }}" type="number" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="+8801XXXXXXXXX">
                                 @error('phone')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -50,12 +50,12 @@ Add Student
 
                             <div class="form-group col-lg-6">
                                 <label>Date Of Birth<span class="text-secondary text-sm">(Optional)</span></label>
-                                <input type="date" name="dob" id="dob" class="form-control" placeholder="DD-MM-YYYY">
+                                <input value="{{ old('dob') }}" type="date" name="dob" id="dob" class="form-control" placeholder="DD-MM-YYYY">
                             </div>
 
                             <div class="form-group col-lg-6">
                                 <label>Address <span class="text-secondary text-sm">(Optional)</span></label>
-                                <input type="text" name="address" id="address" class="form-control" placeholder="House #, Street, Area, City">
+                                <input value="{{ old('address') }}" type="text" name="address" id="address" class="form-control" placeholder="House #, Street, Area, City">
                             </div>
 
 

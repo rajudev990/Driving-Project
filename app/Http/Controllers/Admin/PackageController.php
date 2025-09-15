@@ -22,7 +22,7 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $data = Package::latest()->get();
+        $data = Package::all();
         return view('admin.package.index', compact('data'));
     }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class TeacherController extends Controller
 {
@@ -25,7 +26,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $data = Teacher::latest()->get();
+        $data = Teacher::all();
         return view('admin.teacher.index',compact('data'));
     }
 
@@ -80,11 +81,16 @@ class TeacherController extends Controller
     {
         $data = Teacher::findOrFail($id); 
         $request->validate([
-                'email' => 'required|unique:teachers,email' .$data->id,
-                'phone' => 'required|unique:teachers,phone'.$data->id,
-            ]);
-        
-        
+            'email' => [
+                'required',
+                Rule::unique('teachers', 'email')->ignore($data->id),
+            ],
+            'phone' => [
+                'required',
+                Rule::unique('teachers', 'phone')->ignore($data->id),
+            ],
+        ]);
+                
 
         $image = $request->hasFile('image') ? ImageHelper::uploadImage($request->file('image')) : '';
 
