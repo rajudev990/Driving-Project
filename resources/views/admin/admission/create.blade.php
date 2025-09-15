@@ -29,7 +29,7 @@ Add Admission
 
                         <div class="card-body  row">
                             <div class="form-group col-lg-6">
-                                <label> Select Student <span class="text-danger">*</span></label>
+                                <label>  Student <span class="text-danger">*</span></label>
                                 <select  name="student_id" id="student_id" class="form-control @error('student_id') is-invalid @enderror" required>
                                 @foreach($student as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
@@ -42,7 +42,7 @@ Add Admission
 
 
                              <div class="form-group col-lg-6">
-                                <label>Select Package <span class="text-danger">*</span></label>
+                                <label> Package <span class="text-danger">*</span></label>
                                 <select  name="package_id" id="package_id" class="form-control @error('package_id') is-invalid @enderror" required>
                                 @foreach($package as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>

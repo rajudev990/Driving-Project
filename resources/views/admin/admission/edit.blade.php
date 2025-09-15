@@ -29,7 +29,7 @@ Update Admission
 
                         <div class="card-body  row">
                             <div class="form-group col-lg-6">
-                                <label>Student Name <span class="text-danger">*</span></label>
+                                <label>Student  <span class="text-danger">*</span></label>
                                 <select name="student_id" id="student_id" class="form-control @error('student_id') is-invalid @enderror" required>
                                     @foreach($student as $item)
                                     <option value="{{$item->id}}" {{$data->student_id ==$item->id ? 'selected' : '' }}>{{$item->name}}</option>
