@@ -31,16 +31,25 @@ Update Expense
                             <div class="form-group col-lg-6">
                                 <label>Item <span class="text-danger">*</span></label>
                                 <input required type="text" name="item" value="{{$data->item}}" class="form-control @error('item') is-invalid @enderror" placeholder="Enter item">
+                                @error('item')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group col-lg-6">
                                 <label>Date <span class="text-danger">*</span></label>
-                                <input required type="date" name="date" value="{{$data->date}}" class="form-control  @error('date') is-invalid @enderror">
+                                <input required type="date" id="date" name="date" value="{{$data->date}}" class="form-control  @error('date') is-invalid @enderror">
+                                @error('date')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                              <div class="form-group col-lg-6">
                                 <label>Amount <span class="text-danger">*</span></label>
                                 <input required type="number" step="0.01"  required type="number" name="amount" id="amount" value="{{$data->amount}}" class="form-control  @error('amount') is-invalid @enderror">
+                                 @error('amount')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group col-lg-6">
