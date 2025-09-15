@@ -81,6 +81,7 @@ Add Schedule
                             </div>
 
 
+
                             <div class="form-group col-lg-6">
                                 <label>Status <span class="text-danger">*</span></label>
                                 <select name="status" id="status" class="form-control">

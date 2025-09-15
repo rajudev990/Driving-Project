@@ -37,7 +37,7 @@ Update Package
                             </div>
 
                             <div class="form-group col-lg-12">
-                                <label> Total Class <span class="text-danger">*</span></label>
+                                <label> Total Class <span class="text-secondary text-sm">(Optional)</span></label>
                                 <input type="number" name="total_class" value="{{$data->total_class}}" class="form-control  @error('total_class') is-invalid @enderror" placeholder="Enter Class">
                                 @error('total_class')
                                 <span class="text-danger">{{ $message }}</span>

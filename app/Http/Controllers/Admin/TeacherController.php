@@ -42,9 +42,10 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-               'name' => 'required|string'
-        ]);
+         $request->validate([
+                'email' => 'required|unique:teachers,email',
+                'phone' => 'required|unique:teachers,phone',
+            ]);
 
         $data = $request->all();
 
@@ -77,11 +78,13 @@ class TeacherController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-               'name' => 'required|string'
-        ]);
-        
         $data = Teacher::findOrFail($id); 
+        $request->validate([
+                'email' => 'required|unique:teachers,email' .$data->id,
+                'phone' => 'required|unique:teachers,phone'.$data->id,
+            ]);
+        
+        
 
         $image = $request->hasFile('image') ? ImageHelper::uploadImage($request->file('image')) : '';
 

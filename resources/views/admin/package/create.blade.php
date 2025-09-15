@@ -37,7 +37,7 @@ Add Package
                             </div>
 
                             <div class="form-group col-lg-12">
-                                <label> Total Class <span class="text-danger">*</span></label>
+                                <label> Total Class <span class="text-secondary text-sm">(Optional)</span></label>
                                 <input type="number" name="total_class" value=" " class="form-control  @error('total_class') is-invalid @enderror" placeholder="Enter Class">
                                 @error('total_class')
                                 <span class="text-danger">{{ $message }}</span>
@@ -45,7 +45,7 @@ Add Package
                             </div>
 
                             <div class="form-group col-lg-12">
-                                <label>Status <span class="text-danger">*</span></label>
+                                <label>Status </label>
                                 <select name="status" id="status" class="form-control">
                                     <option value="1">Active</option>
                                     <option value="0">Deactive</option>

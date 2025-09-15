@@ -16,14 +16,14 @@ class PackageController extends Controller
         $this->middleware('permission:delete package')->only('destroy');
     }
 
-    
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $data = Package::latest()->get();
-        return view('admin.package.index',compact('data'));
+        return view('admin.package.index', compact('data'));
     }
 
     /**
@@ -40,9 +40,9 @@ class PackageController extends Controller
     public function store(Request $request)
     {
 
-         $request->validate([
-               'name' => 'required|string',
-               'total_class' => 'required'
+
+        $request->validate([
+            'name' => 'required|unique:packages,name',
         ]);
 
 
@@ -64,8 +64,8 @@ class PackageController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Package::findOrFail($id); 
-        return view('admin.package.edit',compact('data'));
+        $data = Package::findOrFail($id);
+        return view('admin.package.edit', compact('data'));
     }
 
     /**
@@ -74,12 +74,12 @@ class PackageController extends Controller
     public function update(Request $request, string $id)
     {
 
-         $request->validate([
-               'name' => 'required|string',
-               'total_class' => 'required'
+        $data = Package::findOrFail($id);
+        $request->validate([
+            'name' => 'required|unique:packages,name,' . $data->id,
         ]);
-        
-        $data = Package::findOrFail($id); 
+
+
 
         $input = $request->all();
         $data->update($input);
@@ -92,8 +92,8 @@ class PackageController extends Controller
      */
     public function destroy(string $id)
     {
-         $data = Package::findOrFail($id); 
-         $data->delete();
-         return redirect()->back()->with('success', 'Data Delete successfully.');
+        $data = Package::findOrFail($id);
+        $data->delete();
+        return redirect()->back()->with('success', 'Data Delete successfully.');
     }
 }

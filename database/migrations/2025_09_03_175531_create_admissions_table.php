@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('package_id')->nullable();
             $table->float('course_fee')->nullable();
             $table->float('paid')->nullable();
-            $table->float('due')->nullable();
             $table->string('status')->default(0);
             $table->string('auth_user')->nullable();
             $table->timestamps();

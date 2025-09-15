@@ -19,14 +19,14 @@ class StudentController extends Controller
         $this->middleware('permission:delete student')->only('destroy');
     }
 
-    
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $data = Student::latest()->get();
-        return view('admin.student.index',compact('data'));
+        return view('admin.student.index', compact('data'));
     }
 
     /**
@@ -42,8 +42,8 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-            'name' => 'required|string',
+        $request->validate([
+            'phone' => 'required|unique:students,phone',
         ]);
 
         $data = $request->all();
@@ -68,8 +68,8 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Student::findOrFail($id); 
-        return view('admin.student.edit',compact('data'));
+        $data = Student::findOrFail($id);
+        return view('admin.student.edit', compact('data'));
     }
 
     /**
@@ -77,22 +77,22 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
+         $data = Student::findOrFail($id);
         $request->validate([
-            'name' => 'required|string',
+            'phone' => 'required|unique:students,phone' .$data->id,
         ]);
 
-        $data = Student::findOrFail($id); 
+       
 
         $image = $request->hasFile('image') ? ImageHelper::uploadImage($request->file('image')) : '';
 
-         if($request->hasFile('image') && $data->image) {
+        if ($request->hasFile('image') && $data->image) {
             Storage::disk('public')->delete($data->image);
-         }
+        }
 
         $input = $request->all();
 
-        if($image){
+        if ($image) {
             $input['image'] = $image;
         }
 
@@ -106,13 +106,13 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-         $data = Student::findOrFail($id); 
+        $data = Student::findOrFail($id);
 
-         if($data->image){
-             Storage::disk('public')->delete($data->image);
-         }
+        if ($data->image) {
+            Storage::disk('public')->delete($data->image);
+        }
 
-         $data->delete();
-         return redirect()->back()->with('success', 'Data Delete successfully.');
+        $data->delete();
+        return redirect()->back()->with('success', 'Data Delete successfully.');
     }
 }

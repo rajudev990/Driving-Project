@@ -65,18 +65,14 @@ Update Admission
                                 <input type="number" value="{{$data->course_fee}}" name="course_fee" id="course_fee" class="form-control" placeholder="Enter Course Amount">
                             </div>
 
-                            <div class="form-group col-lg-12">
+                            <div class="form-group col-lg-6">
                                 <label>Paid </label>
                                 <input type="number" value="{{$data->paid}}" name="paid" id="paid" class="form-control" placeholder=" Enter Paid Amount">
                             </div>
 
-                            <div class="form-group col-lg-12">
-                                <label>Due </label>
-                                <input type="number" value="{{$data->due}}" name="due" id="due" class="form-control" placeholder=" Enter Due Amount">
-                            </div>
 
 
-                            <div class="form-group col-lg-12">
+                            <div class="form-group col-lg-6">
                                 <label>Status <span class="text-danger">*</span></label>
                                 <select name="status" id="status" class="form-control">
                                     <option value="1" {{$data->status ==1 ? 'selected' : '' }}>Active</option>
